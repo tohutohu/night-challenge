@@ -47,12 +47,12 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'https://responscomment.jouhou1637.now.sh'
+    proxy: true
   },
 
-  // proxy: {
-  //   '/dicts': 'https://responscomment.jouhou1637.now.sh'
-  // },
+  proxy: {
+    '/dicts': 'https://responscomment.jouhou1637.now.sh'
+  },
   /*
    ** Build configuration
    */
