@@ -40,21 +40,19 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/axios'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true,
     baseURL: 'https://responscomment.jouhou1637.now.sh'
   },
 
-  proxy: {
-    '/dicts': 'https://responscomment.jouhou1637.now.sh'
-  },
+  // proxy: {
+  //   '/dicts': 'https://responscomment.jouhou1637.now.sh'
+  // },
   /*
    ** Build configuration
    */
