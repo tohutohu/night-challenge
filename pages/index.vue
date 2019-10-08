@@ -5,54 +5,76 @@
         <h1>Tyeptal Custom Response Setting Service</h1>
       </div>
       <el-table :data="dicts">
-        <el-table-column prop="id" label="ID" width="60px"></el-table-column>
+        <el-table-column prop="id" label="ID" width="56px"></el-table-column>
         <el-table-column label="Request">
           <template slot-scope="scope">
-            <template v-if="editing.id !== scope.row.id">{{
-              scope.row.request
-            }}</template>
+            <template v-if="editing.id !== scope.row.id">
+              {{ scope.row.request }}
+            </template>
             <template v-else>
-              <el-input v-model="editing.request"></el-input>
+              <el-input
+                v-model="editing.request"
+                type="textarea"
+                :rows="1"
+              ></el-input>
             </template>
           </template>
         </el-table-column>
         <el-table-column label="Response">
           <template slot-scope="scope">
-            <template v-if="editing.id !== scope.row.id">{{
-              scope.row.response
-            }}</template>
+            <template v-if="editing.id !== scope.row.id">
+              {{ scope.row.response }}
+            </template>
             <template v-else>
-              <el-input v-model="editing.response"></el-input>
+              <el-input
+                v-model="editing.response"
+                type="textarea"
+                :rows="1"
+              ></el-input>
             </template>
           </template>
         </el-table-column>
-        <el-table-column label="Operation">
+        <el-table-column label="Operation" width="100px">
           <template slot-scope="scope">
             <template v-if="editing.id !== scope.row.id">
-              <el-button size="small" @click="editData(scope.row)"
-                >Edit</el-button
-              >
               <el-button
-                size="small"
+                size="mini"
+                icon="el-icon-edit"
+                circle
+                @click="editData(scope.row)"
+              ></el-button>
+              <el-button
+                size="mini"
                 type="danger"
+                icon="el-icon-delete"
+                circle
                 @click="confirmDelete(scope.row)"
-                >Delete</el-button
-              >
+              ></el-button>
             </template>
             <template v-else>
               <template v-if="scope.row.id === 'new'">
-                <el-button size="small" @click="createData(scope.row)"
-                  >Create</el-button
-                >
+                <el-button
+                  size="mini"
+                  icon="el-icon-check"
+                  circle
+                  @click="createData(scope.row)"
+                ></el-button>
               </template>
               <template v-else>
-                <el-button size="small" @click="updateData(scope.row)"
-                  >Update</el-button
-                >
+                <el-button
+                  size="mini"
+                  icon="el-icon-check"
+                  circle
+                  @click="updateData(scope.row)"
+                ></el-button>
               </template>
-              <el-button type="danger" size="small" @click="cancelEdit"
-                >Cancel</el-button
-              >
+              <el-button
+                type="danger"
+                size="mini"
+                icon="el-icon-close"
+                circle
+                @click="cancelEdit"
+              ></el-button>
             </template>
           </template>
         </el-table-column>
@@ -67,7 +89,7 @@
       </div>
     </el-main>
 
-    <el-dialog title="Confirm" :visible.sync="dialogVisible" width="30%">
+    <el-dialog title="Confirm" :visible.sync="dialogVisible" width="300px">
       <span>削除してもよろしいですか？</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">Cancel</el-button>
@@ -82,7 +104,12 @@ export default {
   data() {
     return {
       dialogVisible: false,
-      deletingId: -1
+      deletingId: -1,
+      editing: {
+        id: -1,
+        request: '',
+        response: ''
+      }
     }
   },
   async asyncData({ $axios }) {

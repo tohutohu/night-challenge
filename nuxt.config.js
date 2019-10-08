@@ -40,18 +40,27 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
+    'nuxt-basic-auth-module'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true
+    proxy: true,
+    baseURL: 'https://custom-response.to-hutohu.now.sh'
   },
 
   proxy: {
     '/dicts': 'https://responscomment.jouhou1637.now.sh'
+  },
+
+  basic: {
+    name: 'sechack',
+    pass: '6E8g6foxBb',
+    enabled: process.env.NODE_ENV === 'production'
   },
   /*
    ** Build configuration
